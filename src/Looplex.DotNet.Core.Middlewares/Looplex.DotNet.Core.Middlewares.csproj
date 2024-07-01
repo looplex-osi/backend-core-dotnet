@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<IsPackable>true</IsPackable>
+	<PackageId>Looplex.DotNet.Core.Middlewares</PackageId>
+	<Authors>Guilherme Câmara</Authors>
+	<Company>Looplex</Company>
+	<PackageTags>Looplex;Core;Backend;</PackageTags>
+	<Description>
+		Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
+	</Description>
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+  </PropertyGroup>
+
+  <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug'">
+	  <Exec Command="nuget add &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; -source C:\local-nuget-feed" />
+  </Target>
+	
+  <ItemGroup>
+    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.5" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
