@@ -3,6 +3,7 @@ using Looplex.DotNet.Core.Middlewares;
 using Looplex.DotNet.Core.WebAPI.Middlewares;
 using Looplex.DotNet.Core.WebAPI.Routes;
 using Looplex.OpenForExtension.Context;
+using Looplex.OpenForExtension.Plugins;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -15,7 +16,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
         public static RouteHandlerBuilder MapGet(
             this IEndpointRouteBuilder app,
             string routeName,
-            IDefaultContext context,
+            IList<IPlugin> plugins,
             MiddlewareDelegate[] middlewares,
             int[]? producesStatusCodes = null)
         {
@@ -23,6 +24,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             {
                 var _middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
                 _middlewares.AddRange(middlewares);
+
+                var context = DefaultContext.Create(plugins, app.ServiceProvider);
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. _middlewares])(context);
@@ -75,7 +78,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
         public static RouteHandlerBuilder MapPost(
             this IEndpointRouteBuilder app,
             string routeName,
-            IDefaultContext context,
+            IList<IPlugin> plugins,
             MiddlewareDelegate[] middlewares,
             int[]? producesStatusCodes = null)
         {
@@ -83,6 +86,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             {
                 var _middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
                 _middlewares.AddRange(middlewares);
+
+                var context = DefaultContext.Create(plugins, app.ServiceProvider);
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. _middlewares])(context);
@@ -102,7 +107,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
         public static RouteHandlerBuilder MapDelete(
             this IEndpointRouteBuilder app,
             string routeName,
-            IDefaultContext context,
+            IList<IPlugin> plugins,
             MiddlewareDelegate[] middlewares,
             int[]? producesStatusCodes = null)
         {
@@ -110,6 +115,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             {
                 var _middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
                 _middlewares.AddRange(middlewares);
+
+                var context = DefaultContext.Create(plugins, app.ServiceProvider);
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. _middlewares])(context);
