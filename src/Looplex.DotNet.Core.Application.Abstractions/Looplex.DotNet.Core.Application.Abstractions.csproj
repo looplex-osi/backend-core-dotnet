@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.3.0" />
-	<PackageReference Include="Looplex.OpenForExtension" Version="1.0.5" />
+	<PackageReference Include="Looplex.OpenForExtension" Version="1.0.8" />
   </ItemGroup>
 
   <ItemGroup>
