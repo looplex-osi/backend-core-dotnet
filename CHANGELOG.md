@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.4"></a>
+## [1.0.4](https://www.github.com/looplex-osi/backend-core-dotnet/releases/tag/v1.0.4) (2024-07-11)
+
+### Bug Fixes
+
+* **core.webapi:** added default ext methods to add profiles and services ([0577a61](https://www.github.com/looplex-osi/backend-core-dotnet/commit/0577a61ad99a9f7cdd692df9e3f6f2a78b4a73f9))
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://www.github.com/looplex-osi/backend-core-dotnet/releases/tag/v1.0.3) (2024-07-11)
 
