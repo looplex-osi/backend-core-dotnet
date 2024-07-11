@@ -1,45 +1,37 @@
 ﻿using Looplex.DotNet.Core.Common.Middlewares;
 using Looplex.DotNet.Core.Middlewares;
+using Looplex.DotNet.Core.WebAPI.Factories;
 using Looplex.DotNet.Core.WebAPI.Middlewares;
-using Looplex.DotNet.Core.WebAPI.Routes;
-using Looplex.OpenForExtension.Context;
-using Looplex.OpenForExtension.Plugins;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace Looplex.DotNet.Core.WebAPI.Routes
 {
-    public static partial class RouteBuilder
+    public static class RouteBuilder
     {
         public static RouteHandlerBuilder MapGet(
             this IEndpointRouteBuilder app,
             string routeName,
-            IList<IPlugin> plugins,
-            MiddlewareDelegate[] middlewares,
-            int[]? producesStatusCodes = null)
+            RouteBuilderOptions options)
         {
             var builder = app.MapGet(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
             {
-                var _middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
-                _middlewares.AddRange(middlewares);
+                var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
+                var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
+                middlewares.AddRange(options.Middlewares);
 
-                var context = DefaultContext.Create(plugins, app.ServiceProvider);
+                var context = contextFactory.Create(options.Services);
 
                 SetStateValues(context.State, httpContext);
-                await MiddlewareComposer.Compose([.. _middlewares])(context);
+                await MiddlewareComposer.Compose([.. middlewares])(context);
             });
 
-            if (producesStatusCodes != null)
-            {
-                foreach (int statusCode in producesStatusCodes)
-                {
-                    builder.Produces(statusCode);
-                }
-            }
+            AddStatusCodesToRoute(options, builder);
 
-            if (middlewares.Any(m => m == CoreMiddlewares.PaginationMiddleware))
+            if (options.Middlewares.Any(m => m == CoreMiddlewares.PaginationMiddleware))
             {
                 builder.WithOpenApi(operation =>
                 {
@@ -70,6 +62,17 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             return builder;
         }
 
+        private static void AddStatusCodesToRoute(RouteBuilderOptions options, RouteHandlerBuilder builder)
+        {
+            if (options.ProducesStatusCodes.Length == 0)
+            {
+                foreach (var statusCode in options.ProducesStatusCodes)
+                {
+                    builder.Produces(statusCode);
+                }
+            }
+        }
+
         private static void SetStateValues(dynamic state, HttpContext httpContext)
         {
             state.HttpContext = httpContext;
@@ -78,28 +81,21 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
         public static RouteHandlerBuilder MapPost(
             this IEndpointRouteBuilder app,
             string routeName,
-            IList<IPlugin> plugins,
-            MiddlewareDelegate[] middlewares,
-            int[]? producesStatusCodes = null)
+            RouteBuilderOptions options)
         {
             var builder = app.MapPost(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
             {
-                var _middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
-                _middlewares.AddRange(middlewares);
+                var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
+                var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
+                middlewares.AddRange(middlewares);
 
-                var context = DefaultContext.Create(plugins, app.ServiceProvider);
+                var context = contextFactory.Create(options.Services);
 
                 SetStateValues(context.State, httpContext);
-                await MiddlewareComposer.Compose([.. _middlewares])(context);
+                await MiddlewareComposer.Compose([.. middlewares])(context);
             });
 
-            if (producesStatusCodes != null)
-            {
-                foreach (int statusCode in producesStatusCodes)
-                {
-                    builder.Produces(statusCode);
-                }
-            }
+            AddStatusCodesToRoute(options, builder);
 
             return builder;
         }
@@ -107,28 +103,21 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
         public static RouteHandlerBuilder MapDelete(
             this IEndpointRouteBuilder app,
             string routeName,
-            IList<IPlugin> plugins,
-            MiddlewareDelegate[] middlewares,
-            int[]? producesStatusCodes = null)
+            RouteBuilderOptions options)
         {
             var builder = app.MapDelete(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
             {
-                var _middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
-                _middlewares.AddRange(middlewares);
+                var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
+                var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
+                middlewares.AddRange(options.Middlewares);
 
-                var context = DefaultContext.Create(plugins, app.ServiceProvider);
+                var context = contextFactory.Create(options.Services);
 
                 SetStateValues(context.State, httpContext);
-                await MiddlewareComposer.Compose([.. _middlewares])(context);
+                await MiddlewareComposer.Compose([.. middlewares])(context);
             });
 
-            if (producesStatusCodes != null)
-            {
-                foreach (int statusCode in producesStatusCodes)
-                {
-                    builder.Produces(statusCode);
-                }
-            }
+            AddStatusCodesToRoute(options, builder);
 
             return builder;
         }
