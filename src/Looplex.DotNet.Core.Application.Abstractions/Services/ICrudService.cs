@@ -5,8 +5,8 @@ namespace Looplex.DotNet.Core.Application.Abstractions.Services
 {
     public interface ICrudService
     {
-        Task GetAll(IDefaultContext context);
-        Task GetAsync(IDefaultContext context);
+        Task GetAllAsync(IDefaultContext context);
+        Task GetByIdAsync(IDefaultContext context);
         Task CreateAsync(IDefaultContext context);
         Task DeleteAsync(IDefaultContext context);
     }
