@@ -87,7 +87,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             {
                 var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
                 var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
-                middlewares.AddRange(middlewares);
+                middlewares.AddRange(options.Middlewares);
 
                 var context = contextFactory.Create(options.Services);
 
