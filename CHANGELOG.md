@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.6"></a>
+## [1.0.6](https://www.github.com/looplex-osi/backend-core-dotnet/releases/tag/v1.0.6) (2024-07-11)
+
+### Bug Fixes
+
+* **routebuilder:** post maps were not adding correct middlewares ([f42082c](https://www.github.com/looplex-osi/backend-core-dotnet/commit/f42082ca9e9e8e46de83a6037c1e1479f7fce824))
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://www.github.com/looplex-osi/backend-core-dotnet/releases/tag/v1.0.5) (2024-07-11)
 
