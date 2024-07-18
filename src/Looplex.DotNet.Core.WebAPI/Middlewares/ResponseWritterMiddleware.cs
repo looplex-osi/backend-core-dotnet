@@ -1,8 +1,8 @@
-﻿using Looplex.DotNet.Core.Middlewares;
+﻿using System.Text;
+using Looplex.DotNet.Core.Middlewares;
 using Microsoft.AspNetCore.Http;
-using System.Text;
 
-namespace Looplex.DotNet.Core.Common.Middlewares
+namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     {

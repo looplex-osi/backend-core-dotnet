@@ -1,10 +1,10 @@
-﻿using Looplex.DotNet.Core.Application.Abstractions.Pagination;
+﻿using System.Dynamic;
+using Looplex.DotNet.Core.Application.Abstractions.DTOs;
 using Looplex.DotNet.Core.Common.Utils;
 using Looplex.DotNet.Core.Middlewares;
 using Microsoft.AspNetCore.Http;
-using System.Dynamic;
 
-namespace Looplex.DotNet.Core.Common.Middlewares
+namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     {

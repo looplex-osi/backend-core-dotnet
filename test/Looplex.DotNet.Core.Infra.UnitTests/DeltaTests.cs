@@ -1,5 +1,4 @@
 using Looplex.DotNet.Core.Infra.Data;
-using System.Text;
 
 namespace Looplex.DotNet.Core.Domain.ServicesTest
 {

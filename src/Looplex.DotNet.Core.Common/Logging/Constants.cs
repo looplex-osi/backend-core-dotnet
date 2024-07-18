@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Looplex.DotNet.Core.Common.Logging
+﻿namespace Looplex.DotNet.Core.Common.Logging
 {
     public class Constants
     {

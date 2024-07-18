@@ -1,14 +1,14 @@
-﻿using Looplex.DotNet.Core.Common.Exceptions;
+﻿using System.Dynamic;
+using System.Net;
+using Looplex.DotNet.Core.Common.Exceptions;
 using Looplex.DotNet.Core.Common.Utils;
 using Looplex.DotNet.Core.Middlewares;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Dynamic;
-using System.Net;
 
-namespace Looplex.DotNet.Core.Common.Middlewares
+namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     { 

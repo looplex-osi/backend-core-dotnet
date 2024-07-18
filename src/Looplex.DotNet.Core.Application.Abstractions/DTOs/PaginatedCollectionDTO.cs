@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Looplex.DotNet.Core.Application.Abstractions.Pagination
+namespace Looplex.DotNet.Core.Application.Abstractions.DTOs
 {
     public class PaginatedCollectionDTO
     {

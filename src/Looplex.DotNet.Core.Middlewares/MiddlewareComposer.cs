@@ -1,8 +1,6 @@
 ﻿using Looplex.OpenForExtension.Context;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace Looplex.DotNet.Core.Middlewares
 {

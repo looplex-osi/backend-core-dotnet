@@ -1,5 +1,4 @@
-﻿using Looplex.DotNet.Core.Common.Middlewares;
-using Looplex.DotNet.Core.Middlewares;
+﻿using Looplex.DotNet.Core.Middlewares;
 
 namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
