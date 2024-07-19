@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.12"></a>
+## 1.0.12 (2024-07-19)
+
+### Bug Fixes
+
+* removed open api
+
 <a name="1.0.11"></a>
 ## 1.0.11 (2024-07-19)
 
