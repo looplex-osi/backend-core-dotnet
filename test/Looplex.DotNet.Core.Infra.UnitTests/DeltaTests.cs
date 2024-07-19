@@ -75,7 +75,7 @@ namespace Looplex.DotNet.Core.Domain.ServicesTest
             string propertyName = "NonExistentProperty";
 
             // Act
-            bool result = delta.TryGetProperty(propertyName, out object changedValue);
+            bool result = delta.TryGetProperty(propertyName, out object? changedValue);
 
             // Assert
             Assert.IsFalse(result);
