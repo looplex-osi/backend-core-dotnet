@@ -5,10 +5,11 @@ namespace Looplex.DotNet.Core.Application.Services
 {
     public static class CollectionWebLinkingBuilder
     {
-        const string template = "/documents?page={{page}}&per_page={{per_page}}${extra_querystring}";
+        const string Template = "/documents?page={{page}}&per_page={{per_page}}${extra_querystring}";
+        
         public static Dictionary<string, object> BuildCollectionMetadata(Dictionary<string, object> datasource)
         {
-            string template = datasource["template"].ToString()!;
+            var template = datasource["template"].ToString()!;
             var page = Convert.ToInt32(datasource["page"]);
             var perPage = Convert.ToInt32(datasource["per_page"]);
             var pageCount = Convert.ToInt32(datasource["page_count"]);
@@ -26,7 +27,7 @@ namespace Looplex.DotNet.Core.Application.Services
                 { "per_page", perPage },
                 { "page_count", pageCount },
                 { "total_count", totalCount },
-                { "links", new Dictionary<string, string>
+                { "links", new Dictionary<string, string?>
                     {
                         { "self", self },
                         { "first", first },

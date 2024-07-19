@@ -1,5 +1,5 @@
 ﻿using System.Dynamic;
-using Looplex.DotNet.Core.Application.Abstractions.DTOs;
+using Looplex.DotNet.Core.Application.Abstractions.Dtos;
 using Looplex.DotNet.Core.Common.Utils;
 using Looplex.DotNet.Core.Middlewares;
 using Microsoft.AspNetCore.Http;
@@ -8,11 +8,11 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     {
-        private const string ERR_TEMPLATE = "Param {0} must be specified for paginated resources";
-        private const string ERR_TYPE_TEMPLATE = "Param {0} is not valid";
-        private const int MIN_VALUE = 1;
+        private const string ErrTemplate = "Param {0} must be specified for paginated resources";
+        private const string ErrTypeTemplate = "Param {0} is not valid";
+        private const int MinValue = 1;
 
-        public readonly static MiddlewareDelegate PaginationMiddleware = new(async (context, next) =>
+        public static readonly MiddlewareDelegate PaginationMiddleware = new(async (context, next) =>
         {
             HttpContext httpContext = context.State.HttpContext;
 
@@ -28,7 +28,7 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
             var uri = GetUri(httpContext.Request);
 
             var totalCount = (int)context.Result.GetType()
-                .GetProperty(nameof(PaginatedCollectionDTO.TotalCount))!
+                .GetProperty(nameof(PaginatedCollectionDto.TotalCount))!
                 .GetValue(context.Result)!;
             var linkHeader = PaginationUtils.CreateLinkHeader(uri, page, perPage, totalCount);
 
@@ -44,12 +44,12 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
             }
             else
             {
-                throw new ArgumentNullException(string.Format(ERR_TEMPLATE, param));
+                throw new ArgumentNullException(string.Format(ErrTemplate, param));
             }
 
-            if (!int.TryParse(value, out int intValue) || intValue < MIN_VALUE)
+            if (!int.TryParse(value, out var intValue) || intValue < MinValue)
             {
-                throw new ArgumentException(string.Format(ERR_TYPE_TEMPLATE, param));
+                throw new ArgumentException(string.Format(ErrTypeTemplate, param));
             }
 
             return intValue;

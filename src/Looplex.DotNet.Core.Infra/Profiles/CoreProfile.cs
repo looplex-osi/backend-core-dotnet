@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Looplex.DotNet.Core.Application.Abstractions.DTOs;
+using Looplex.DotNet.Core.Application.Abstractions.Dtos;
 using Looplex.DotNet.Core.Domain;
 
 namespace Looplex.DotNet.Core.Infra.Profiles
@@ -8,7 +8,7 @@ namespace Looplex.DotNet.Core.Infra.Profiles
     {
         public CoreProfile()
         {
-            CreateMap(typeof(PaginatedCollection<>), typeof(PaginatedCollectionDTO<>))
+            CreateMap(typeof(PaginatedCollection<>), typeof(PaginatedCollectionDto))
                 .ReverseMap();
         }
     }
