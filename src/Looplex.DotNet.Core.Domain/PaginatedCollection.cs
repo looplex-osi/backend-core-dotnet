@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 
 namespace Looplex.DotNet.Core.Domain
 {
-    public class PaginatedCollection<T>
+    public partial class PaginatedCollection
     {
-        public int Page { get; set; }
-        public int PerPage { get; set; }
-        public int TotalCount { get; set; }
-        public IEnumerable<T> Records { get; set; } = new List<T>();
+    }
+
+    public static class Serialize
+    {
+        public static string ToJson(this object self, JsonSerializerSettings settings) => JsonConvert.SerializeObject(self, settings);
     }
 }

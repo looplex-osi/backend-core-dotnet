@@ -25,8 +25,8 @@
 	</Target>
 	
   <ItemGroup>
-    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.9" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
   </ItemGroup>
 
 </Project>

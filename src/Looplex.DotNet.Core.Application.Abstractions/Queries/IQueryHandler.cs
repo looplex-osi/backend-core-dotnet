@@ -2,7 +2,7 @@
 
 namespace Looplex.DotNet.Core.Application.Abstractions.Queries
 {
-    public interface IQueryHandler<T, U> : IRequestHandler<T, U> where T : IRequest<U>
+    public interface IQueryHandler<TRequest, TResult> : IRequestHandler<TRequest, TResult> where TRequest : IRequest<TResult>
     {
     }
 }

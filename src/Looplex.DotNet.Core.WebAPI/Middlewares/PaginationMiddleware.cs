@@ -1,5 +1,4 @@
 ﻿using System.Dynamic;
-using Looplex.DotNet.Core.Application.Abstractions.Dtos;
 using Looplex.DotNet.Core.Common.Utils;
 using Looplex.DotNet.Core.Middlewares;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +17,7 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
             HttpContext httpContext = context.State.HttpContext;
 
             int page = GetQueryParam(httpContext, "page");
-            int perPage = GetQueryParam(httpContext, "per_page");
+            int perPage = GetQueryParam(httpContext, "perPage");
 
             context.State.Pagination = new ExpandoObject();
             context.State.Pagination.Page = page;
@@ -28,9 +27,7 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
 
             var uri = GetUri(httpContext.Request);
 
-            var totalCount = (int)context.Result.GetType()
-                .GetProperty(nameof(PaginatedCollectionDto.TotalCount))!
-                .GetValue(context.Result)!;
+            var totalCount = (int)context.State.Pagination.TotalCount;
             var linkHeader = PaginationUtils.CreateLinkHeader(uri, page, perPage, totalCount);
 
             httpContext.Response.Headers.Append("Link", linkHeader);
