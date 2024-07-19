@@ -12,8 +12,9 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
         private const string ErrTypeTemplate = "Param {0} is not valid";
         private const int MinValue = 1;
 
-        public static readonly MiddlewareDelegate PaginationMiddleware = new(async (context, next) =>
+        public static readonly MiddlewareDelegate PaginationMiddleware = new(async (context, cancellationToken, next) =>
         {
+            cancellationToken.ThrowIfCancellationRequested();
             HttpContext httpContext = context.State.HttpContext;
 
             int page = GetQueryParam(httpContext, "page");

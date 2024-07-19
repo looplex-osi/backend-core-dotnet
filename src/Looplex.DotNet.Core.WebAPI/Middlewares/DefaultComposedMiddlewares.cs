@@ -4,7 +4,7 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static class DefaultComposedMiddlewares
     {
-        internal readonly static MiddlewareDelegate[] RequiredEndpointMiddlewares = {
+        internal static readonly MiddlewareDelegate[] RequiredEndpointMiddlewares = {
             CoreMiddlewares.ResponseWritterMiddleware,
             CoreMiddlewares.ExceptionMiddleware,
         };

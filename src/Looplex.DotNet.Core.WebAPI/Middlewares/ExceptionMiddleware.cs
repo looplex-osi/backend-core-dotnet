@@ -12,10 +12,11 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     { 
-        public static readonly MiddlewareDelegate ExceptionMiddleware = new(async (context, next) =>
+        public static readonly MiddlewareDelegate ExceptionMiddleware = new(async (context, cancellationToken, next) =>
         {            
             try
             {
+                cancellationToken.ThrowIfCancellationRequested();
                 await next();
             }
             catch (EntityNotFoundException ex)

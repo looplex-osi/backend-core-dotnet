@@ -23,7 +23,6 @@
 	<Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Unix'">
 		<Exec Command="dotnet nuget push &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; --source ~/.aspnet/local-nuget-feed" />
 	</Target>
-
 	
   <ItemGroup>
     <PackageReference Include="Looplex.OpenForExtension" Version="1.0.9" />

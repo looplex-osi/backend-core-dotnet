@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 
 namespace Looplex.DotNet.Core.WebAPI.Routes
 {
@@ -16,7 +15,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             string routeName,
             RouteBuilderOptions options)
         {
-            var builder = app.MapGet(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
+            return app.MapGet(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
             {
                 var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
                 var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
@@ -25,51 +24,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 SetStateValues(context.State, httpContext);
-                await MiddlewareComposer.Compose([.. middlewares])(context);
+                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
             });
-
-            AddStatusCodesToRoute(options, builder);
-
-            if (options.Middlewares.Any(m => m == CoreMiddlewares.PaginationMiddleware))
-            {
-                builder.WithOpenApi(operation =>
-                {
-                    operation.Parameters.Add(new OpenApiParameter
-                    {
-                        Name = "page",
-                        In = ParameterLocation.Query,
-                        Required = true,
-                        Schema = new OpenApiSchema
-                        {
-                            Type = "integer"
-                        }
-                    });
-                    operation.Parameters.Add(new OpenApiParameter
-                    {
-                        Name = "per_page",
-                        In = ParameterLocation.Query,
-                        Required = true,
-                        Schema = new OpenApiSchema
-                        {
-                            Type = "integer"
-                        }
-                    });
-                    return operation;
-                });
-            }
-
-            return builder;
-        }
-
-        private static void AddStatusCodesToRoute(RouteBuilderOptions options, RouteHandlerBuilder builder)
-        {
-            if (options.ProducesStatusCodes.Length == 0)
-            {
-                foreach (var statusCode in options.ProducesStatusCodes)
-                {
-                    builder.Produces(statusCode);
-                }
-            }
         }
 
         private static void SetStateValues(dynamic state, HttpContext httpContext)
@@ -82,7 +38,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             string routeName,
             RouteBuilderOptions options)
         {
-            var builder = app.MapPost(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
+            return app.MapPost(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
             {
                 var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
                 var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
@@ -91,12 +47,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 SetStateValues(context.State, httpContext);
-                await MiddlewareComposer.Compose([.. middlewares])(context);
+                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
             });
-
-            AddStatusCodesToRoute(options, builder);
-
-            return builder;
         }
 
         public static RouteHandlerBuilder MapDelete(
@@ -104,7 +56,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             string routeName,
             RouteBuilderOptions options)
         {
-            var builder = app.MapDelete(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
+            return app.MapDelete(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
             {
                 var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
                 var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
@@ -113,12 +65,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 SetStateValues(context.State, httpContext);
-                await MiddlewareComposer.Compose([.. middlewares])(context);
+                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
             });
-
-            AddStatusCodesToRoute(options, builder);
-
-            return builder;
         }
     }
 }

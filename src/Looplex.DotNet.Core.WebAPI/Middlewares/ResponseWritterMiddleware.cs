@@ -6,8 +6,10 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     {
-        public readonly static MiddlewareDelegate ResponseWritterMiddleware = new(async (context, next) =>
+        public static readonly MiddlewareDelegate ResponseWritterMiddleware = new(async (context, cancellationToken, next) =>
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            
             HttpContext httpContext = context.State.HttpContext;
 
             var originalBodyStream = httpContext.Response.Body;
