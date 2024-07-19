@@ -2,7 +2,7 @@
 
 namespace Looplex.DotNet.Core.Common.Exceptions
 {
-    public class EntityInvalidExcepion(IList<string> errorMessages)
+    public class EntityInvalidException(IList<string> errorMessages)
         : ValidationException("One or more validation errors occurred.")
     {
         public IList<string> ErrorMessages { get; } = errorMessages;

@@ -1,4 +1,4 @@
-﻿namespace Looplex.DotNet.Core.Domain.ServicesTest
+﻿namespace Looplex.DotNet.Core.Infra.UnitTests
 {
     internal class EntityForDeltaTests
     {

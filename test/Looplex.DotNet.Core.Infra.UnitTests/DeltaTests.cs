@@ -1,6 +1,6 @@
 using Looplex.DotNet.Core.Infra.Data;
 
-namespace Looplex.DotNet.Core.Domain.ServicesTest
+namespace Looplex.DotNet.Core.Infra.UnitTests
 {
     [TestClass]
     public class DeltaTests

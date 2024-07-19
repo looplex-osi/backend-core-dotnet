@@ -12,7 +12,7 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
     public static partial class CoreMiddlewares
     { 
-        public readonly static MiddlewareDelegate ExceptionMiddleware = new(async (context, next) =>
+        public static readonly MiddlewareDelegate ExceptionMiddleware = new(async (context, next) =>
         {            
             try
             {
@@ -21,24 +21,35 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
             catch (EntityNotFoundException ex)
             {
                 HttpContext httpContext = context.State.HttpContext;
-                IWebHostEnvironment env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+                var env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
 
                 await httpContext.Response
                     .WriteAsJsonAsync(GetErrorObject(ex, env), HttpStatusCode.NotFound);
             }
+            catch (EntityInvalidException ex)
+            {
+                HttpContext httpContext = context.State.HttpContext;
+                var env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+
+                dynamic errorObject = GetErrorObject(ex, env);
+                errorObject.ErrorMessages = ex.ErrorMessages;
+                
+                await httpContext.Response
+                    .WriteAsJsonAsync((object)errorObject, HttpStatusCode.NotFound);
+            }
             catch (HttpRequestException ex)
             {
                 HttpContext httpContext = context.State.HttpContext;
-                IWebHostEnvironment env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+                var env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
 
-                HttpStatusCode statusCode = ex.StatusCode ?? HttpStatusCode.InternalServerError;
+                var statusCode = ex.StatusCode ?? HttpStatusCode.InternalServerError;
                 await httpContext.Response
                     .WriteAsJsonAsync(GetErrorObject(ex, env), statusCode);
             }
             catch (Exception ex)
             {
                 HttpContext httpContext = context.State.HttpContext;
-                IWebHostEnvironment env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
+                var env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
 
                 await httpContext.Response
                     .WriteAsJsonAsync(GetErrorObject(ex, env), HttpStatusCode.InternalServerError);
