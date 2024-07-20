@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.14"></a>
+## 1.0.14 (2024-07-20)
+
+### Bug Fixes
+
+* upgraded open for extension package
+
 <a name="1.0.13"></a>
 ## 1.0.13 (2024-07-19)
 
