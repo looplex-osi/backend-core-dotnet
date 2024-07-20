@@ -1,14 +1,14 @@
-﻿using Looplex.OpenForExtension.Context;
+﻿using Looplex.OpenForExtension.Abstractions.Contexts;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Looplex.DotNet.Core.Middlewares
 {
-    public delegate Task MiddlewareDelegate(IDefaultContext context, CancellationToken cancellationToken, Func<Task> next);
+    public delegate Task MiddlewareDelegate(IContext context, CancellationToken cancellationToken, Func<Task> next);
 
     public static class MiddlewareComposer
     {
-        public static Func<IDefaultContext, CancellationToken, Task> Compose(MiddlewareDelegate?[] middlewares)
+        public static Func<IContext, CancellationToken, Task> Compose(MiddlewareDelegate?[] middlewares)
         {
             if (middlewares == null)
                 throw new ArgumentNullException(nameof(middlewares), "Middlewares stack MUST be provided.");

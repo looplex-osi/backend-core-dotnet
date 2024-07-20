@@ -1,14 +1,14 @@
 ﻿using System.Threading;
-using Looplex.OpenForExtension.Context;
 using System.Threading.Tasks;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace Looplex.DotNet.Core.Application.Abstractions.Services
 {
     public interface ICrudService
     {
-        Task GetAllAsync(IDefaultContext context, CancellationToken cancellationToken);
-        Task GetByIdAsync(IDefaultContext context, CancellationToken cancellationToken);
-        Task CreateAsync(IDefaultContext context, CancellationToken cancellationToken);
-        Task DeleteAsync(IDefaultContext context, CancellationToken cancellationToken);
+        Task GetAllAsync(IContext context, CancellationToken cancellationToken);
+        Task GetByIdAsync(IContext context, CancellationToken cancellationToken);
+        Task CreateAsync(IContext context, CancellationToken cancellationToken);
+        Task DeleteAsync(IContext context, CancellationToken cancellationToken);
     }
 }

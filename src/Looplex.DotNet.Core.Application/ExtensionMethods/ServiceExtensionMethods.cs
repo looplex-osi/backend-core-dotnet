@@ -1,11 +1,11 @@
-﻿using Looplex.OpenForExtension.Context;
-using System.Dynamic;
+﻿using System.Dynamic;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace Looplex.DotNet.Core.Application.ExtensionMethods
 {
     public static class ServiceExtensionMethods
     {
-        public static T GetRequiredValue<T>(this IDefaultContext context, string path)
+        public static T GetRequiredValue<T>(this IContext context, string path)
         {
             var value = GetValue<T>(context, path);
 
@@ -17,7 +17,7 @@ namespace Looplex.DotNet.Core.Application.ExtensionMethods
             return value;
         }
 
-        public static T? GetValue<T>(this IDefaultContext context, string path)
+        public static T? GetValue<T>(this IContext context, string path)
         {
             if (string.IsNullOrEmpty(path))
             {

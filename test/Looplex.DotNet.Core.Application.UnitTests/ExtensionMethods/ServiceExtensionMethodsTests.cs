@@ -1,18 +1,21 @@
 using Looplex.DotNet.Core.Application.ExtensionMethods;
-using Looplex.OpenForExtension.Context;
 using System.Dynamic;
+using Looplex.OpenForExtension.Abstractions.Contexts;
+using NSubstitute;
 
 namespace Looplex.DotNet.Core.Application.UnitTests.ExtensionMethods
 {
     [TestClass]
     public class ServiceExtensionMethodsTests
     {
-        private IDefaultContext _context = null!;
+        private IContext _context = null!;
 
         [TestInitialize]
         public void Setup()
         {
-            _context = DefaultContext.Create([], null);
+            _context = Substitute.For<IContext>();
+            var state = new ExpandoObject();
+            _context.State.Returns(state);
             _context.State.prop1 = new ExpandoObject();
             _context.State.prop1.prop2 = "Hello, World!";
             _context.State.prop1.prop3 = 123;

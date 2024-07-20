@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using Looplex.OpenForExtension.Context;
+using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace Looplex.DotNet.Core.Application.Abstractions.Factories;
 
 public interface IContextFactory
 {
-    IDefaultContext Create(IEnumerable<string> services);
+    IContext Create(IEnumerable<string> services);
 }
