@@ -26,7 +26,7 @@
 
 	
   <ItemGroup>
-    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.10" />
+    <PackageReference Include="Looplex.OpenForExtension" Version="1.0.11" />
   </ItemGroup>
 	
   <ItemGroup>
