@@ -7,14 +7,14 @@ namespace Looplex.DotNet.Core.Common.Utils
     public static class JsonUtils
     {
         public const string JsonContentTypeWithCharset = "application/json; charset=utf-8";
-        
-        public static Task WriteAsJsonAsync(this HttpResponse httpResponse, object value, HttpStatusCode httpStatusCode)
+
+        public static Task WriteAsJsonAsync(this HttpResponse httpResponse, string serializedValue, HttpStatusCode httpStatusCode)
         {
             httpResponse.ContentType = JsonContentTypeWithCharset;
             httpResponse.StatusCode = (int)httpStatusCode;
-            return httpResponse.WriteAsync(JsonSerializer.Serialize(value));
+            return httpResponse.WriteAsync(serializedValue);
         }
-
+        
         public static JsonSerializerOptions HttpBodyConverter()
         {
             return new JsonSerializerOptions

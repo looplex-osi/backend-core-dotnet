@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 
 namespace Looplex.DotNet.Core.WebAPI.Middlewares
 {
@@ -31,12 +32,9 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
             {
                 HttpContext httpContext = context.State.HttpContext;
                 var env = httpContext.RequestServices.GetRequiredService<IWebHostEnvironment>();
-
-                dynamic errorObject = GetErrorObject(ex, env);
-                errorObject.ErrorMessages = ex.ErrorMessages;
                 
                 await httpContext.Response
-                    .WriteAsJsonAsync((object)errorObject, HttpStatusCode.NotFound);
+                    .WriteAsJsonAsync(GetErrorObject(ex, env), HttpStatusCode.NotFound);
             }
             catch (HttpRequestException ex)
             {
@@ -57,7 +55,7 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
             }
         });
 
-        private static object GetErrorObject(Exception ex, IWebHostEnvironment env)
+        private static string GetErrorObject(Exception ex, IWebHostEnvironment env)
         {
             dynamic error = new ExpandoObject();
 
@@ -69,7 +67,12 @@ namespace Looplex.DotNet.Core.WebAPI.Middlewares
                 error.InnerException = ex.InnerException?.Message;
             }
 
-            return error;
+            if (ex is EntityInvalidException entityInvalidException)
+            {
+                error.ErrorMessages = entityInvalidException.ErrorMessages;
+            }
+
+            return JsonConvert.SerializeObject(error);
         }
     }
 }
