@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.16"></a>
+## 1.0.16 (2024-07-20)
+
+### Bug Fixes
+
+* **jsonutils:** changed write async json extension  method to receive an already serialized value
+
 <a name="1.0.15"></a>
 ## 1.0.15 (2024-07-20)
 
