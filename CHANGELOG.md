@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.0.18"></a>
+## 1.0.18 (2024-07-30)
+
+### Bug Fixes
+
+* **routebuilder:** added map patch
+
 <a name="1.0.17"></a>
 ## 1.0.17 (2024-07-30)
 
