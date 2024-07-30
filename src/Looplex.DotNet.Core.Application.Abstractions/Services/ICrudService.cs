@@ -9,6 +9,7 @@ namespace Looplex.DotNet.Core.Application.Abstractions.Services
         Task GetAllAsync(IContext context, CancellationToken cancellationToken);
         Task GetByIdAsync(IContext context, CancellationToken cancellationToken);
         Task CreateAsync(IContext context, CancellationToken cancellationToken);
+        Task PatchAsync(IContext context, CancellationToken cancellationToken);
         Task DeleteAsync(IContext context, CancellationToken cancellationToken);
     }
 }
