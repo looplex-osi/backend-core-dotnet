@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.1.0"></a>
+## 1.1.0 (2024-09-06)
+
+### Features
+
+* added observable trait for type changes tracker
+
 <a name="1.0.18"></a>
 ## 1.0.18 (2024-07-30)
 
