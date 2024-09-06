@@ -25,6 +25,7 @@
   </Target>
 
   <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="5.1.1" />
     <PackageReference Include="MassTransit" Version="8.2.3" />
     <PackageReference Include="MediatR" Version="12.3.0" />
   </ItemGroup>
