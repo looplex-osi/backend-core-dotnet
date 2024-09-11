@@ -28,6 +28,69 @@ public class ObservableTypeTests
     }
 
     [TestMethod]
+    public void ChildPropertyPropertyChange_ShouldBeTracked()
+    {
+        // Arrange
+        var model = SampleModel.Mock();
+
+        // Act
+        model.Child!.Title = "Test Title";
+
+        // Assert
+        Assert.IsTrue(model.Child.ChangedPropertyNotification.ChangedProperties.Contains("Title"));
+        Assert.AreEqual(1, model.Child.ChangedPropertyNotification.ChangedProperties.Count);
+        
+        model.Child.ChangedPropertyNotification.AddedItems.Should().BeEmpty();
+        model.Child.ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+    }
+    
+    [TestMethod]
+    public void ChildPropertyChange_ShouldBeTracked()
+    {
+        // Arrange
+        var model = SampleModel.Mock();
+
+        // Act
+        model.Child = new SampleChildModel();
+        
+        // Assert
+        Assert.IsTrue(model.ChangedPropertyNotification.ChangedProperties.Contains("Child"));
+        Assert.AreEqual(1, model.ChangedPropertyNotification.ChangedProperties.Count);
+
+        model.ChangedPropertyNotification.AddedItems.Should().BeEmpty();
+        model.ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+        
+        model.Child.ChangedPropertyNotification.ChangedProperties.Should().BeEmpty();
+        
+        model.Child.ChangedPropertyNotification.AddedItems.Should().BeEmpty();
+        model.Child.ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+    }
+
+    [TestMethod]
+    public void ChildPropertyChangeAndChildPropertyPropertyChange_ShouldBeTracked()
+    {
+        // Arrange
+        var model = SampleModel.Mock();
+
+        // Act
+        model.Child = new SampleChildModel();
+        model.Child!.Title = "Test Title";
+        
+        // Assert
+        Assert.IsTrue(model.ChangedPropertyNotification.ChangedProperties.Contains("Child"));
+        Assert.AreEqual(1, model.ChangedPropertyNotification.ChangedProperties.Count);
+
+        model.ChangedPropertyNotification.AddedItems.Should().BeEmpty();
+        model.ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+        
+        Assert.IsTrue(model.Child.ChangedPropertyNotification.ChangedProperties.Contains("Title"));
+        Assert.AreEqual(1, model.Child.ChangedPropertyNotification.ChangedProperties.Count);
+        
+        model.Child.ChangedPropertyNotification.AddedItems.Should().BeEmpty();
+        model.Child.ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+    }
+    
+    [TestMethod]
     public void CollectionChange_ShouldBeTracked()
     {
         // Arrange
@@ -117,6 +180,104 @@ public class ObservableTypeTests
         
         model.ChangedPropertyNotification.ChangedProperties.Should().BeEmpty();
     }
+    
+    [TestMethod]
+    public void ObservableItemsChanged_ShouldTrackAddAndRemove()
+    {
+        // Arrange
+        var model = SampleModel.Mock();
+
+        // Act
+        model.ObservableItems.Add(new SampleChildModel { Title = "Item 1" });
+        model.ObservableItems.RemoveAt(0);
+        model.ObservableItems.Add(new SampleChildModel { Title = "Item 2" });
+
+        // Assert
+        Assert.IsTrue(model.ChangedPropertyNotification.AddedItems.ContainsKey("ObservableItems"));
+        model.ChangedPropertyNotification.AddedItems["ObservableItems"].Should()
+            .Contain(s => ((SampleChildModel)s).Title == "Item 1");
+        model.ChangedPropertyNotification.AddedItems["ObservableItems"].Should()
+            .Contain(s => ((SampleChildModel)s).Title == "Item 2");
+        Assert.AreEqual(2, model.ChangedPropertyNotification.AddedItems["ObservableItems"].Count);
+
+        Assert.IsTrue(model.ChangedPropertyNotification.RemovedItems.ContainsKey("ObservableItems"));
+        model.ChangedPropertyNotification.AddedItems["ObservableItems"].Should()
+            .Contain(s => ((SampleChildModel)s).Title == "Item 1");
+        Assert.AreEqual(1, model.ChangedPropertyNotification.RemovedItems["ObservableItems"].Count);
+        
+        model.ChangedPropertyNotification.ChangedProperties.Should().BeEmpty();
+    }
+    
+    [TestMethod]
+    public void InitialObservableItemsChanged_ChangesShouldBeTracked()
+    {
+        // Arrange
+        var model = new SampleModel
+        {
+            Age = 1,
+            Name = "Name Init",
+            ObservableItems = new ObservableCollection<SampleChildModel>()
+            {
+                new() { Title = "Item 1" }
+            }
+        }.WithObservableProxy();
+
+        // Act
+        model.ObservableItems.First().Title = "New Item";
+        
+        // Assert
+        model.ObservableItems.First().ChangedPropertyNotification.ChangedProperties.Should().Contain("Title");
+        model.ObservableItems.First().ChangedPropertyNotification.AddedItems.Should().BeEmpty();   
+        model.ObservableItems.First().ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+    }
+    
+    [TestMethod]
+    public void ReplaceObservableItems_ChangesShouldBeTracked()
+    {
+        // Arrange
+        var model = SampleModel.Mock();
+        model.ObservableItems = new ObservableCollection<SampleChildModel>()
+        {
+            new() { Title = "Item 1" }
+        };
+        model.ObservableItems.Add(new() { Title = "Item 2" });
+        
+        // Act
+        model.ObservableItems.First().Title = "New Item 1";
+        model.ObservableItems.Last().Title = "New Item 2";
+
+        // Assert
+        model.ObservableItems.First().ChangedPropertyNotification.ChangedProperties.Should().Contain("Title");
+        model.ObservableItems.First().ChangedPropertyNotification.AddedItems.Should().BeEmpty();   
+        model.ObservableItems.First().ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+        
+        model.ObservableItems.Last().ChangedPropertyNotification.ChangedProperties.Should().Contain("Title");
+        model.ObservableItems.Last().ChangedPropertyNotification.AddedItems.Should().BeEmpty();   
+        model.ObservableItems.Last().ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+        
+        Assert.IsTrue(model.ChangedPropertyNotification.AddedItems.ContainsKey("ObservableItems"));
+        model.ChangedPropertyNotification.AddedItems["ObservableItems"].Should()
+            .Contain(s => ((SampleChildModel)s).Title == "New Item 2");
+        model.ChangedPropertyNotification.AddedItems["ObservableItems"].Should()
+            .Contain(s => ((SampleChildModel)s).Title == "New Item 2");
+        Assert.AreEqual(1, model.ChangedPropertyNotification.AddedItems["ObservableItems"].Count);
+    }
+    
+    [TestMethod]
+    public void ObservableItemsChanged_AddedItemsChangesShouldBeTracked()
+    {
+        // Arrange
+        var model = SampleModel.Mock();
+        model.ObservableItems.Add(new SampleChildModel { Title = "Item 1" });
+
+        // Act
+        model.ObservableItems.First().Title = "New Item";
+        
+        // Assert
+        model.ObservableItems.First().ChangedPropertyNotification.ChangedProperties.Should().Contain("Title");
+        model.ObservableItems.First().ChangedPropertyNotification.AddedItems.Should().BeEmpty();   
+        model.ObservableItems.First().ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+    }
 }
 
 public class SampleModel : IHasChangedPropertyNotificationTrait
@@ -125,15 +286,31 @@ public class SampleModel : IHasChangedPropertyNotificationTrait
     
     public static SampleModel Mock()
     {
-        return new SampleModel()
+        return new SampleModel
         {
             Age = 1,
-            Name = "Name Init"
+            Name = "Name Init",
+            Child = new ()
+            {
+                Title = "Title Init",
+            },
         }.WithObservableProxy();
     }
     public virtual string? Name { get; set; }
 
     public virtual int Age { get; set; }
 
+    public virtual SampleChildModel? Child { get; set; }
+
     public virtual IList<string> Items { get; set; } = new ObservableCollection<string>();
+    
+    public virtual IList<SampleChildModel> ObservableItems { get; set; } = new ObservableCollection<SampleChildModel>();
+
+}
+
+public class SampleChildModel : IHasChangedPropertyNotificationTrait
+{
+    public IChangedPropertyNotificationTrait ChangedPropertyNotification { get; } = new ChangedPropertyNotificationTrait();
+
+    public virtual string? Title { get; set; }
 }

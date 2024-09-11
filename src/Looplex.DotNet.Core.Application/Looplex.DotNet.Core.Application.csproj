@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Looplex.DotNet.Core.Application.Abstractions\Looplex.DotNet.Core.Application.Abstractions.csproj" />
+    <ProjectReference Include="..\Looplex.DotNet.Core.Common\Looplex.DotNet.Core.Common.csproj" />
   </ItemGroup>
 
 </Project>
