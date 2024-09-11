@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.1.1"></a>
+## 1.1.1 (2024-09-11)
+
+### Bug Fixes
+
+* **observableproxy:** now child properties and elements or collections that are eligible are proxies
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2024-09-06)
 
