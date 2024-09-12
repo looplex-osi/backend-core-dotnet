@@ -49,7 +49,11 @@ public static class ObservableProxy
         
         WithObservableCollectionItemsProxies(type, instance);
 
-        var proxy = ProxyGenerator.CreateClassProxyWithTarget(type, classToProxy,new NotifyPropertyChangedInterceptor())!;
+        var proxy = ProxyGenerator.CreateClassProxyWithTarget(
+            type,
+            classToProxy,
+            new ProxyGenerationOptions(new GeneralProxyGenerationHook()),
+            new NotifyPropertyChangedInterceptor())!;
         
         // bind OnCollectionChanged on all collections that are not readonly
         var setters = type
@@ -206,6 +210,18 @@ public static class ObservableProxy
                 return;
             }
             
+            if (invocation.Method.Name == "Equals" && invocation.Arguments.Length == 1)
+            {
+                var otherProxy = invocation.Arguments[0];
+                if (otherProxy != null && ProxyUtil.IsProxy(otherProxy))
+                {
+                    var target = invocation.InvocationTarget;
+                    var otherTarget = ProxyUtil.GetUnproxiedInstance(otherProxy);
+                    invocation.ReturnValue = target.Equals(otherTarget);
+                    return;
+                }
+            }
+            
             if (invocation.Method.IsSpecialName && invocation.Method.Name.StartsWith("set_"))
             {
                 var propertyName = invocation.Method.Name[4..];
@@ -242,6 +258,47 @@ public static class ObservableProxy
             {
                 invocation.Proceed();
             }
+        }
+    }
+    
+    /// <summary>
+    /// Proxy hook configured to intercept all methods, Object.Equals as well.
+    /// </summary>
+    class GeneralProxyGenerationHook : IProxyGenerationHook
+    {
+        // This method is called when all methods have been inspected.
+        public void MethodsInspected()
+        {
+        }
+
+        // This method is called when a non-proxyable member (like a non-virtual method) is encountered.
+        public void NonProxyableMemberNotification(Type type, MemberInfo memberInfo)
+        {
+        }
+
+        // This method determines if a given method should be intercepted.
+        public bool ShouldInterceptMethod(Type type, MethodInfo methodInfo)
+        {
+            // General rule: Intercept all methods.
+            return true;
+        }
+
+        // Override Equals to ensure proper caching behavior
+        public override bool Equals(object obj)
+        {
+            // General implementation: All instances of this hook are considered equal
+            if (obj is GeneralProxyGenerationHook)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        // Override GetHashCode to ensure proper caching behavior
+        public override int GetHashCode()
+        {
+            // Return a constant hash code. Since all instances are considered equal, the hash code should be the same.
+            return typeof(GeneralProxyGenerationHook).GetHashCode();
         }
     }
 }

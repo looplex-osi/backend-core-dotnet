@@ -6,7 +6,7 @@ using Looplex.DotNet.Core.Domain.Traits;
 namespace Looplex.DotNet.Core.Application.UnitTests.ExtensionMethods;
 
 [TestClass]
-public class ObservableTypeTests
+public class ObservableProxyTests
 {
     [TestMethod]
     public void PropertyChange_ShouldBeTracked()
@@ -277,6 +277,29 @@ public class ObservableTypeTests
         model.ObservableItems.First().ChangedPropertyNotification.ChangedProperties.Should().Contain("Title");
         model.ObservableItems.First().ChangedPropertyNotification.AddedItems.Should().BeEmpty();   
         model.ObservableItems.First().ChangedPropertyNotification.RemovedItems.Should().BeEmpty();
+    }
+    
+    [TestMethod]
+    public void TwoProxiesEquality_TargetAreEqual()
+    {
+        // Arrange
+        var model = new SampleModel
+        {
+            Age = 1,
+            Name = "Name Init",
+            Child = new ()
+            {
+                Title = "Title Init",
+            },
+        };
+        var proxy1 = model.WithObservableProxy();
+        var proxy2 = model.WithObservableProxy();
+
+        // Act
+        var equal = proxy1.Equals(proxy2);
+        
+        // Assert
+        Assert.IsTrue(equal);
     }
 }
 
