@@ -284,7 +284,7 @@ public static class ObservableProxy
         }
 
         // Override Equals to ensure proper caching behavior
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
             // General implementation: All instances of this hook are considered equal
             if (obj is GeneralProxyGenerationHook)
