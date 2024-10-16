@@ -51,6 +51,24 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
             });
         }
 
+        public static RouteHandlerBuilder MapPut(
+            this IEndpointRouteBuilder app,
+            string routeName,
+            RouteBuilderOptions options)
+        {
+            return app.MapPut(routeName, async (HttpContext httpContext, CancellationToken cancellationToken) =>
+            {
+                var contextFactory = httpContext.RequestServices.GetRequiredService<IContextFactory>();
+                var middlewares = DefaultComposedMiddlewares.RequiredEndpointMiddlewares.ToList();
+                middlewares.AddRange(options.Middlewares);
+
+                var context = contextFactory.Create(options.Services);
+
+                SetStateValues(context.State, httpContext);
+                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+            });
+        }
+
         public static RouteHandlerBuilder MapPatch(
             this IEndpointRouteBuilder app,
             string routeName,
