@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="1.3.0"></a>
+## 1.3.0 (2024-10-18)
+
+### Features
+
+* **icacheservice:** added new interface for a cache service
+
 <a name="1.2.1"></a>
 ## 1.2.1 (2024-10-16)
 
