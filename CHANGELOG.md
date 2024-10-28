@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.0.0"></a>
+## 2.0.0 (2024-10-28)
+
+### Bug Fixes
+
+* **pagination:** moved to scimv2 project
+
+### Breaking Changes
+
+* **pagination:** moved to scimv2 project
+
 <a name="1.3.0"></a>
 ## 1.3.0 (2024-10-18)
 
