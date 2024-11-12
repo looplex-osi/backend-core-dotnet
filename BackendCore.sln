@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.DotNet.Core.WebAPI"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.DotNet.Core.Application.UnitTests", "test\Looplex.DotNet.Core.Application.UnitTests\Looplex.DotNet.Core.Application.UnitTests.csproj", "{9B2BBCED-7C5D-444C-B3BC-ADDE258C5F50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Looplex.DotNet.Core.Infra.UnitTests", "test\Looplex.DotNet.Core.Infra.UnitTests\Looplex.DotNet.Core.Infra.UnitTests.csproj", "{CFA80A10-8E77-4F24-A5A5-69C7F64DB58F}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Looplex.DotNet.Core.Middlewares", "src\Looplex.DotNet.Core.Middlewares\Looplex.DotNet.Core.Middlewares.csproj", "{7AE97477-6BE2-4F1F-93DD-7CDE29539A6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Looplex.DotNet.Core.Common.UnitTests", "test\Looplex.DotNet.Core.Common.UnitTests\Looplex.DotNet.Core.Common.UnitTests.csproj", "{12854A63-AA4F-49B8-B426-767153EA6375}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,14 +59,14 @@ Global
 		{9B2BBCED-7C5D-444C-B3BC-ADDE258C5F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2BBCED-7C5D-444C-B3BC-ADDE258C5F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2BBCED-7C5D-444C-B3BC-ADDE258C5F50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFA80A10-8E77-4F24-A5A5-69C7F64DB58F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFA80A10-8E77-4F24-A5A5-69C7F64DB58F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFA80A10-8E77-4F24-A5A5-69C7F64DB58F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFA80A10-8E77-4F24-A5A5-69C7F64DB58F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AE97477-6BE2-4F1F-93DD-7CDE29539A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7AE97477-6BE2-4F1F-93DD-7CDE29539A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE97477-6BE2-4F1F-93DD-7CDE29539A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE97477-6BE2-4F1F-93DD-7CDE29539A6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12854A63-AA4F-49B8-B426-767153EA6375}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12854A63-AA4F-49B8-B426-767153EA6375}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12854A63-AA4F-49B8-B426-767153EA6375}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12854A63-AA4F-49B8-B426-767153EA6375}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,8 +79,8 @@ Global
 		{B5CC48E3-BBF7-4492-A875-CECD1522B1B3} = {9B2455D3-1B25-4D3D-A158-77B66D2E1CB7}
 		{BBFB17B6-954D-4BDC-94B4-E19A1C16A064} = {9B2455D3-1B25-4D3D-A158-77B66D2E1CB7}
 		{9B2BBCED-7C5D-444C-B3BC-ADDE258C5F50} = {AA450F3F-FA51-49C5-ABA7-AD28D45A249F}
-		{CFA80A10-8E77-4F24-A5A5-69C7F64DB58F} = {AA450F3F-FA51-49C5-ABA7-AD28D45A249F}
 		{7AE97477-6BE2-4F1F-93DD-7CDE29539A6C} = {9B2455D3-1B25-4D3D-A158-77B66D2E1CB7}
+		{12854A63-AA4F-49B8-B426-767153EA6375} = {AA450F3F-FA51-49C5-ABA7-AD28D45A249F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2A43CE53-45C0-4BD4-8129-4798327D7363}

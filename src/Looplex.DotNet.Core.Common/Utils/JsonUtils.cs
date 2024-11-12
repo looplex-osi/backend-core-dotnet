@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Text.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Looplex.DotNet.Core.Common.Utils
 {
@@ -21,6 +22,16 @@ namespace Looplex.DotNet.Core.Common.Utils
             {
                 PropertyNameCaseInsensitive = true
             };
+        }
+        
+        public static void Traverse(JToken token, Action<JToken> visitor)
+        {
+            visitor(token);
+
+            foreach (var child in token.Children())
+            {
+                Traverse(child, visitor);
+            }
         }
     }
 }
