@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.1.0"></a>
+## 2.1.0 (2024-11-12)
+
+### Features
+
+* **jsonutils:** added traverse method and removed unused old files
+
 <a name="2.0.1"></a>
 ## 2.0.1 (2024-10-28)
 
