@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="2.3.0"></a>
+## 2.3.0 (2024-11-28)
+
+### Features
+
+* **isqldatabaseservice:** added sql database and provider interfaces
+
 <a name="2.2.0"></a>
 ## 2.2.0 (2024-11-28)
 
