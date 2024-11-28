@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.0.0"></a>
+## 3.0.0 (2024-11-28)
+
+### Features
+
+* **isecretsservice:** add interface for secret manager service
+
+### Bug Fixes
+
+* **idatabasecontext:** removed old data access interfaces, removed core infra project
+
+### Breaking Changes
+
+* **idatabasecontext:** removed old data access interfaces, removed core infra project
+
 <a name="2.3.0"></a>
 ## 2.3.0 (2024-11-28)
 
