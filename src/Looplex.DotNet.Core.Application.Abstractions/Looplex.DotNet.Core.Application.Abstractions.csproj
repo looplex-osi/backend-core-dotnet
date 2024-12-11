@@ -3,33 +3,26 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-	<IsPackable>true</IsPackable>
-	<PackageId>Looplex.DotNet.Core.Application.Abstractions</PackageId>
-	<Authors>Guilherme Câmara</Authors>
-	<Company>Looplex</Company>
-	<PackageTags>Looplex;Core;Backend;</PackageTags>
-	<Description>
-		Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
-	</Description>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <IsPackable>true</IsPackable>
+    <PackageId>Looplex.DotNet.Core.Application.Abstractions</PackageId>
+    <Authors>Guilherme Câmara</Authors>
+    <Company>Looplex</Company>
+    <PackageTags>Looplex;Core;Backend;</PackageTags>
+    <Description>
+      Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
+    </Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
-	
-  <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Windows_NT'">
-	<Exec Command="nuget add &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; -source C:\local-nuget-feed" />
-  </Target>
-  <Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Unix'">
- 	<Exec Command="dotnet nuget push &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; --source ~/.aspnet/local-nuget-feed" />
-  </Target>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.3.0" />
-	<PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.1" />
+    <PackageReference Include="MediatR" Version="12.3.0"/>
+    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.1"/>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Looplex.DotNet.Core.Domain\Looplex.DotNet.Core.Domain.csproj" />
+    <ProjectReference Include="..\Looplex.DotNet.Core.Domain\Looplex.DotNet.Core.Domain.csproj"/>
   </ItemGroup>
 
 </Project>

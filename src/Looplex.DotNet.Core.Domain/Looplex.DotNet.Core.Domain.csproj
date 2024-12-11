@@ -2,33 +2,26 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-	<ImplicitUsings>disable</ImplicitUsings>
-	<Nullable>enable</Nullable>
-	<IsPackable>true</IsPackable>
-	<PackageId>Looplex.DotNet.Core.Domain</PackageId>
-	<Authors>Guilherme Câmara</Authors>
-	<Company>Looplex</Company>
-	<PackageTags>Looplex;Core;Backend;</PackageTags>
-	<Description>
-		Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
-	</Description>
-	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-	<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PackageId>Looplex.DotNet.Core.Domain</PackageId>
+    <Authors>Guilherme Câmara</Authors>
+    <Company>Looplex</Company>
+    <PackageTags>Looplex;Core;Backend;</PackageTags>
+    <Description>
+      Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
+    </Description>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
-	<Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Windows_NT'">
-		<Exec Command="nuget add &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; -source C:\local-nuget-feed" />
-	</Target>
-	<Target Name="PostPackNugetDeploy" AfterTargets="Pack" Condition="'$(Configuration)' == 'Debug' And '$(OS)' == 'Unix'">
-		<Exec Command="dotnet nuget push &quot;$(OutputPath)$(PackageId).$(PackageVersion).nupkg&quot; --source ~/.aspnet/local-nuget-feed" />
-	</Target>
-
   <ItemGroup>
-    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.1" />
-    <PackageReference Include="MediatR" Version="12.3.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.1"/>
+    <PackageReference Include="MediatR" Version="12.3.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>
   </ItemGroup>
 
 </Project>
