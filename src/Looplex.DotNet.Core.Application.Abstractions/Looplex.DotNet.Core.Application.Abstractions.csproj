@@ -11,9 +11,6 @@
     <Description>
       Simple framework that allows the easy aplication of the Open for Extension SOLID principle in .Net projects.
     </Description>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
