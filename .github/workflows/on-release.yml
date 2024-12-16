@@ -1,17 +1,11 @@
-# This workflow will build a .NET project, pack and publish the nuget packages
-
 name: Release to NuGet
-
 on:
-  push:
-    tags:
-      - 'v*'  # Matches tags like v1.0, v2.1.3, etc.
+  release:
+    types: [created]
   workflow_dispatch:  # Allows manual triggering
-
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET
