@@ -3,13 +3,6 @@ using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace Looplex.DotNet.Core.Application.Abstractions.Services;
 
-public enum RbacAction
-{
-    Read,
-    Write,
-    Delete
-}
-
 /// <summary>
 /// Provides role-based access control (RBAC) functionality for authorization checks.
 /// </summary>
@@ -23,5 +16,5 @@ public interface IRbacService
     /// <param name="resource"></param>
     /// <param name="action"></param>
     /// <param name="cancellationToken"></param>
-    void ThrowIfUnauthorized(IContext context, string resource, RbacAction action, CancellationToken cancellationToken);
+    void ThrowIfUnauthorized(IContext context, string resource, string action, CancellationToken cancellationToken);
 }
