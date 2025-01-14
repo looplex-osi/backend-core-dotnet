@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.0.5"></a>
+## 3.0.5 (2025-01-14)
+
+### Bug Fixes
+
+* upgrade nuget packages
+
 <a name="3.0.4"></a>
 ## 3.0.4 (2024-12-13)
 
