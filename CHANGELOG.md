@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.1.1"></a>
+## 3.1.1 (2025-01-14)
+
+### Bug Fixes
+
+* **rbac:** removed constraint on action definition
+
 <a name="3.1.0"></a>
 ## 3.1.0 (2025-01-14)
 
