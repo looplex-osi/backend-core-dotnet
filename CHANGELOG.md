@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.1.0"></a>
+## 3.1.0 (2025-01-14)
+
+### Features
+
+* **irbacservice:** moved rbacservice interface from middlewares repo to this repo
+
 <a name="3.0.5"></a>
 ## 3.0.5 (2025-01-14)
 
