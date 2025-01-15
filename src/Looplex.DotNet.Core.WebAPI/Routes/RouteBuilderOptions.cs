@@ -6,6 +6,6 @@ namespace Looplex.DotNet.Core.WebAPI.Routes;
 
 public record RouteBuilderOptions
 {
-    public IList<string> Services { get; } = [];
-    public IList<MiddlewareDelegate> Middlewares { get; } = [];
+    public IList<string> Services { get; init; } = [];
+    public IList<MiddlewareDelegate> Middlewares { get; init; } = [];
 }
