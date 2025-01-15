@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.2.2"></a>
+## 3.2.2 (2025-01-15)
+
+### Bug Fixes
+
+* **routes:** changed routebuilderoptions from array to list
+
 <a name="3.2.1"></a>
 ## 3.2.1 (2025-01-15)
 
