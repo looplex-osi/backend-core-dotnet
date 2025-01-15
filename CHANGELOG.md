@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="3.2.0"></a>
+## 3.2.0 (2025-01-15)
+
+### Features
+
+* **sdk:** upgrade to .net 9
+* **utils:** added extension method to get caller member name
+
+### Bug Fixes
+
+* **dependencies:** upgrade nuget packages
+
 <a name="3.1.1"></a>
 ## 3.1.1 (2025-01-14)
 
