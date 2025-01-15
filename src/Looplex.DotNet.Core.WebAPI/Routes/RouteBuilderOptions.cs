@@ -1,9 +1,11 @@
 ﻿using Looplex.DotNet.Core.Middlewares;
+// ReSharper disable CollectionNeverUpdated.Global
+// ReSharper disable ClassNeverInstantiated.Global
 
 namespace Looplex.DotNet.Core.WebAPI.Routes;
 
 public record RouteBuilderOptions
 {
-    public string[] Services { get; init; } = [];
-    public required MiddlewareDelegate[] Middlewares { get; init; }
+    public IList<string> Services { get; } = [];
+    public IList<MiddlewareDelegate> Middlewares { get; } = [];
 }
