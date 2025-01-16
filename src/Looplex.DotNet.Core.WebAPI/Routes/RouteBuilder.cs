@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+// ReSharper disable SuspiciousTypeConversion.Global
 
 namespace Looplex.DotNet.Core.WebAPI.Routes
 {
@@ -25,6 +26,9 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                
+                if (context is IDisposable disposableContext)
+                    disposableContext.Dispose();
             });
         }
 
@@ -48,6 +52,9 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                
+                if (context is IDisposable disposableContext)
+                    disposableContext.Dispose();
             });
         }
 
@@ -66,6 +73,9 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                
+                if (context is IDisposable disposableContext)
+                    disposableContext.Dispose();
             });
         }
 
@@ -84,6 +94,9 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                
+                if (context is IDisposable disposableContext)
+                    disposableContext.Dispose();
             });
         }
         
@@ -102,6 +115,9 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 SetStateValues(context.State, httpContext);
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                
+                if (context is IDisposable disposableContext)
+                    disposableContext.Dispose();
             });
         }
     }
