@@ -25,7 +25,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 context.State.HttpContext = httpContext;
-                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                context.State.CancellationToken = cancellationToken;
+                await MiddlewareComposer.Compose([.. middlewares])(context);
                 
                 if (context is IDisposable disposableContext)
                     disposableContext.Dispose();
@@ -46,7 +47,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 context.State.HttpContext = httpContext;
-                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                context.State.CancellationToken = cancellationToken;
+                await MiddlewareComposer.Compose([.. middlewares])(context);
                 
                 if (context is IDisposable disposableContext)
                     disposableContext.Dispose();
@@ -67,7 +69,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 context.State.HttpContext = httpContext;
-                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                context.State.CancellationToken = cancellationToken;
+                await MiddlewareComposer.Compose([.. middlewares])(context);
                 
                 if (context is IDisposable disposableContext)
                     disposableContext.Dispose();
@@ -88,7 +91,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 context.State.HttpContext = httpContext;
-                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                context.State.CancellationToken = cancellationToken;
+                await MiddlewareComposer.Compose([.. middlewares])(context);
                 
                 if (context is IDisposable disposableContext)
                     disposableContext.Dispose();
@@ -109,7 +113,8 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
                 var context = contextFactory.Create(options.Services);
 
                 context.State.HttpContext = httpContext;
-                await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
+                context.State.CancellationToken = cancellationToken;
+                await MiddlewareComposer.Compose([.. middlewares])(context);
                 
                 if (context is IDisposable disposableContext)
                     disposableContext.Dispose();

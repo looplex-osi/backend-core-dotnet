@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Looplex.DotNet.Core.Middlewares
 {
-    public delegate Task MiddlewareDelegate(IContext context, CancellationToken cancellationToken, Func<Task> next);
+    public delegate Task MiddlewareDelegate(IContext context, Func<Task> next);
 
     public static class MiddlewareComposer
     {
-        public static Func<IContext, CancellationToken, Task> Compose(MiddlewareDelegate?[] middlewares)
+        public static Func<IContext, Task> Compose(MiddlewareDelegate?[] middlewares)
         {
             if (middlewares == null)
                 throw new ArgumentNullException(nameof(middlewares), "Middlewares stack MUST be provided.");
@@ -18,7 +18,7 @@ namespace Looplex.DotNet.Core.Middlewares
                 throw new ArgumentException("Middlewares MUST be composed of functions.", nameof(middlewares));
             }
 
-            return async (context, cancellationToken) =>
+            return async (context) =>
             {
                 var index = -1;
                 await Dispatch(0);
@@ -33,7 +33,7 @@ namespace Looplex.DotNet.Core.Middlewares
                     if (middleware == null) return;
                     try
                     {
-                        await middleware(context, cancellationToken, () => Dispatch(i + 1));
+                        await middleware(context, () => Dispatch(i + 1));
                     }
                     catch (Exception ex)
                     {
