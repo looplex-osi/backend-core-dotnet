@@ -15,6 +15,5 @@ public interface IRbacService
     /// <param name="context"></param>
     /// <param name="resource"></param>
     /// <param name="action"></param>
-    /// <param name="cancellationToken"></param>
-    void ThrowIfUnauthorized(IContext context, string resource, string action, CancellationToken cancellationToken);
+    void ThrowIfUnauthorized(IContext context, string resource, string action);
 }
