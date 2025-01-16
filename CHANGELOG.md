@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.1"></a>
+## 4.0.1 (2025-01-16)
+
+### Bug Fixes
+
+* **icrudservice:** removed cancellation token from methods in interface
+
 <a name="4.0.0"></a>
 ## 4.0.0 (2025-01-16)
 
