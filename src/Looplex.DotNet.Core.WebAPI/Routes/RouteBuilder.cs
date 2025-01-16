@@ -24,17 +24,12 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 var context = contextFactory.Create(options.Services);
 
-                SetStateValues(context.State, httpContext);
+                context.State.HttpContext = httpContext;
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
                 
                 if (context is IDisposable disposableContext)
                     disposableContext.Dispose();
             });
-        }
-
-        private static void SetStateValues(dynamic state, HttpContext httpContext)
-        {
-            state.HttpContext = httpContext;
         }
 
         public static RouteHandlerBuilder MapPost(
@@ -50,7 +45,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 var context = contextFactory.Create(options.Services);
 
-                SetStateValues(context.State, httpContext);
+                context.State.HttpContext = httpContext;
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
                 
                 if (context is IDisposable disposableContext)
@@ -71,7 +66,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 var context = contextFactory.Create(options.Services);
 
-                SetStateValues(context.State, httpContext);
+                context.State.HttpContext = httpContext;
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
                 
                 if (context is IDisposable disposableContext)
@@ -92,7 +87,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 var context = contextFactory.Create(options.Services);
 
-                SetStateValues(context.State, httpContext);
+                context.State.HttpContext = httpContext;
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
                 
                 if (context is IDisposable disposableContext)
@@ -113,7 +108,7 @@ namespace Looplex.DotNet.Core.WebAPI.Routes
 
                 var context = contextFactory.Create(options.Services);
 
-                SetStateValues(context.State, httpContext);
+                context.State.HttpContext = httpContext;
                 await MiddlewareComposer.Compose([.. middlewares])(context, cancellationToken);
                 
                 if (context is IDisposable disposableContext)
