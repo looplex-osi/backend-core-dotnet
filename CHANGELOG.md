@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.0"></a>
+## 4.0.0 (2025-01-16)
+
+### Bug Fixes
+
+* **context:** dispose context instance if it is IDisposable
+
+### Breaking Changes
+
+* **context:** cancellation token is now in the context state
+
 <a name="3.2.3"></a>
 ## 3.2.3 (2025-01-15)
 
