@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.3"></a>
+## 4.0.3 (2025-02-10)
+
 <a name="4.0.2"></a>
 ## 4.0.2 (2025-01-16)
 
