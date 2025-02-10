@@ -1,9 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <ImplicitUsings>disable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <PackageId>Looplex.DotNet.Core.Domain</PackageId>
     <Authors>Guilherme Câmara</Authors>
@@ -15,7 +14,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.1"/>
+    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.2" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3"/>

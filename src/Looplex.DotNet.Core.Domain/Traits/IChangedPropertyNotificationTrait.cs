@@ -5,18 +5,18 @@ namespace Looplex.DotNet.Core.Domain.Traits
 {
     public interface IChangedPropertyNotificationTrait 
     {
+        [JsonIgnore] 
+        IList<string> ChangedProperties { get; }
         [JsonIgnore]
-        public IList<string> ChangedProperties { get; }
+        IDictionary<string, IList<object>> AddedItems { get; }
         [JsonIgnore]
-        public IDictionary<string, IList<object>> AddedItems { get; }
-        [JsonIgnore]
-        public IDictionary<string, IList<object>> RemovedItems { get; }
+        IDictionary<string, IList<object>> RemovedItems { get; }
         
         #region Events
 
-        public string PropertyChangedEventName => "PropertyChanged";
+        string PropertyChangedEventName { get; }
 
-        public string CollectionChangedEventName => "CollectionChanged";
+        string CollectionChangedEventName { get; }
         
         #endregion
     }

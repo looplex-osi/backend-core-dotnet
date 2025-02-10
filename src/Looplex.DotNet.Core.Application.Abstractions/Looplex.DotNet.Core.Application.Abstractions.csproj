@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
     <PackageId>Looplex.DotNet.Core.Application.Abstractions</PackageId>
@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
-    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.1"/>
+    <PackageReference Include="Looplex.OpenForExtension.Abstractions" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
