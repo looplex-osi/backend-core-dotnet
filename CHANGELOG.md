@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.6"></a>
+## 4.0.6 (2025-02-13)
+
+### Bug Fixes
+
+* **database:** chaged open connection to async
+
 <a name="4.0.5"></a>
 ## 4.0.5 (2025-02-13)
 
