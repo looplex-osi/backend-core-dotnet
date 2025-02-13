@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.5"></a>
+## 4.0.5 (2025-02-13)
+
+### Bug Fixes
+
+* **databaseservice:** added query multiple async
+
 <a name="4.0.4"></a>
 ## 4.0.4 (2025-02-11)
 
