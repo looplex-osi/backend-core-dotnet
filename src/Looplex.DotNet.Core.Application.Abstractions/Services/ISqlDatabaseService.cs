@@ -20,5 +20,5 @@ public interface ISqlDatabaseService : IDisposable
     
     DbTransaction BeginTransaction();
 
-    void OpenConnection();
+    Task OpenConnectionAsync();
 }
