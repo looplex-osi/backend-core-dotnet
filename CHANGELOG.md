@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.7"></a>
+## 4.0.7 (2025-02-14)
+
+### Bug Fixes
+
+* **database:** added up to 9 result sets on querymultiple for databaseservice
+
 <a name="4.0.6"></a>
 ## 4.0.6 (2025-02-13)
 
