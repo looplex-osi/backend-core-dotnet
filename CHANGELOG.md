@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.8"></a>
+## 4.0.8 (2025-02-20)
+
+### Bug Fixes
+
+* **database:** removed sqlservice and added a provider for the connection
+
 <a name="4.0.7"></a>
 ## 4.0.7 (2025-02-14)
 
