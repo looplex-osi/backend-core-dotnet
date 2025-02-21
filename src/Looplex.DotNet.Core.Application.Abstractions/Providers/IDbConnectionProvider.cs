@@ -5,5 +5,10 @@ namespace Looplex.DotNet.Core.Application.Abstractions.Providers;
 
 public interface IDbConnectionProvider
 {
-    Task<IDbConnection> GetConnectionAsync(string domain, out string databaseName);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="tenant">The tenant to get the database name and connection for</param>
+    /// <returns>Returns (connection, databaseName) for the tenant</returns>
+    Task<(IDbConnection, string)> GetConnectionAsync(string tenant);
 }
