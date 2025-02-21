@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.9"></a>
+## 4.0.9 (2025-02-21)
+
+### Bug Fixes
+
+* **database:** added output var with databasename
+
 <a name="4.0.8"></a>
 ## 4.0.8 (2025-02-20)
 
