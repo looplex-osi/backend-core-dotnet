@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.10"></a>
+## 4.0.10 (2025-02-21)
+
+### Bug Fixes
+
+* **database:** databasename has to be returned as a tuple because of async method
+
 <a name="4.0.9"></a>
 ## 4.0.9 (2025-02-21)
 
