@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="4.0.11"></a>
+## 4.0.11 (2025-02-25)
+
+### Bug Fixes
+
+* upgraded nuget packages
+
 <a name="4.0.10"></a>
 ## 4.0.10 (2025-02-21)
 
