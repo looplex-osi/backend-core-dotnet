@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using Looplex.OpenForExtension.Abstractions.Contexts;
+﻿using Looplex.OpenForExtension.Abstractions.Contexts;
 
 namespace Looplex.DotNet.Core.Application.Abstractions.Services;
 

@@ -1,5 +1,4 @@
 ﻿using Looplex.OpenForExtension.Abstractions.Contexts;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace Looplex.DotNet.Core.Middlewares
@@ -37,8 +36,8 @@ namespace Looplex.DotNet.Core.Middlewares
                     }
                     catch (Exception ex)
                     {
-                        context.Services.GetService<ILogger>()
-                            ?.LogError(ex, "An error occurred when running the middleware");
+                        if (context.Roles.TryGetValue("Logger", out var value) && value is ILogger logger)
+                            logger.LogError(ex, "An error occurred when running the middleware");
                         throw;
                     }
                 }
